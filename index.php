@@ -7,10 +7,11 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
+    <script src="script.js"></script>
     <div class="divBox">
         <div class="leftBox">
             <div class="boxContainer">
-                <h1>Status</h1>
+                <h1 id="status">Status</h1>
             </div>
             <hr></hr>
             <div class="boxContainer">
@@ -18,16 +19,13 @@
             </div>
         </div>
         <div class="rightBox">
-        <div class="boxContainer" style="width: 74vw;">
-                <h1>Box1</h1>
+            <div class="boxContainer" style="width: 74vw;">
+                <h1>thing</h1>
                 <h1>Box2</h1>
                 <h1>Box1</h1>
-                <h1>Box2</h1>
-                <h1>Box1</h1>
-                <h1>Box2</h1>
-                <h1>Box1</h1>
-                <h1>Box2</h1>
             </div>
+            <hr></hr>
+
         </div>
     </div>
 </body>
