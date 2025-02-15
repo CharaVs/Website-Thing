@@ -1,6 +1,6 @@
 const realms = {
     "bodyTempering": 10,
-    "foundation": 20,
+    "foundationEstablishment": 20,
     "coreFormation": 30,
     "nascentSoul": 50,
     "soulFormation": 70,
