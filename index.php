@@ -7,7 +7,7 @@
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
-        <script src="init.js"></script>
+        <script type="module" src="init.js"></script>
         <div class="divBox">
             <div class="leftBox">
                 <div class="boxContainer">
@@ -16,7 +16,19 @@
                 <hr></hr>
                 <div class="boxContainer">
                     <h2 id="healthContainer">Health: 100</h2>
-                    <h2>Qi: 100/100</h2>
+                    <h2 id="qiContainer">Qi: 100/100</h2>
+                </div>
+                <div class="boxContainer">
+                    <h2 id="weaponContainer">Weapon: None</h2>
+                </div>
+                <div class="boxContainer">
+                    <h2 id="armourContainer">Armour: None</h2>
+                </div>
+                <div class="boxContainer">
+                    <h2 id="accessoryContainer">Accessory: None</h2>
+                </div>
+                <div class="boxContainer">
+                    <h2 id="sectContainer">Sect: None</h2>
                 </div>
             </div>
             <div class="rightBox">
@@ -42,7 +54,23 @@
                 <!-- END OF SETTINGS CONTAINERS -->
 
                 <!-- BEGINNING OF INVENTORY CONTAINERS -->
+                <div class="boxContainer" id="inventoryContainer" style="width: 74vw; height: 40vh; border: 3px solid white; justify-content: left; flex-wrap: wrap; overflow-y: auto; margin-bottom: 6px;">
+                </div>
 
+                <div class="boxContainer" id="inventoryContainer2" style="width: 74vw; height: 10vh;">
+                    <h1 class="h1Other" id="nameBox">Name</h1>
+                </div>
+                <div class="boxContainer" id="inventoryContainer2" style="width: 74vw; height: 10vh; justify-content: center; flex-flow: column wrap;">
+                    <h1 class="h1Other" id="descriptionBox">Description</h1>
+                </div>
+                <div class="boxContainer" id="inventoryContainer2" style="width: 74vw; height: 10vh; justify-content: center;">
+                    <h1 class="h1Other" id="attackNumberBox" style="margin-inline: 6px;">Attack</h1>
+                    <h1 class="h1Other" id="defenseNumberBox" style="margin-inline: 6px;">Defense</h1>
+                    <h1 class="h1Other" id="absorbNumberBox" style="margin-inline: 6px;">Qi Absorption</h1>
+                </div>
+                <div class="boxContainer" id="inventoryContainer2" style="width: 74vw; height: 10vh;">
+                    <h1 class="h1" id="equipBox">Equip</h1>
+                </div>
                 <!-- END OF INVENTORY CONTAINERS -->
             </div>
         </div>
