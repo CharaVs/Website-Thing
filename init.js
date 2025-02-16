@@ -67,10 +67,12 @@ function hideContainers(id, callback) {
 
 function showContainers(id) {
     document.querySelectorAll(`[id=${id}]`).forEach(container => {
-        container.style.display = "flex";
-        setTimeout(() => {
-            container.style.opacity = 1;
-        }, 50);
+        if (container.style.display = "none") {
+            container.style.display = "flex";
+            setTimeout(() => {
+                container.style.opacity = 1;
+            }, 50);
+        };
     });
 }
 
