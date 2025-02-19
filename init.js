@@ -50,49 +50,163 @@ function updateHealth(newHealthValue) {
     }
     document.getElementById("healthContainer").innerHTML = `Health: ${playerHealth}`;
 };
+var isDoingAnimation = false;
+document.isDoingAnimation = isDoingAnimation;
 
 function hideContainers(id, callback) {
-    document.querySelectorAll(`[id=${id}]`).forEach(container => {
+    if (isDoingAnimation) return;
+
+    isDoingAnimation = true;
+    document.isDoingAnimation = isDoingAnimation;
+    let containers = document.querySelectorAll(`[id=${id}]`);
+    if (id == "inventoryContainer2") {
+        let container = document.getElementById("inventoryContainer");
+        if (window.getComputedStyle(container).visibility == "hidden") {
+            isDoingAnimation = false;
+            document.isDoingAnimation = isDoingAnimation;
+            container.style.display = "none";
+            container.offsetHeight;
+            if (callback) callback();
+            return;
+        };
         container.style.opacity = 0;
+        container.offsetHeight;
         
         function handleTransitionEnd() {
+            container.style.visibility = "hidden";
             container.style.display = "none";
             container.removeEventListener("transitionend", handleTransitionEnd);
             if (callback) callback();
         }
 
         container.addEventListener("transitionend", handleTransitionEnd);
+    };
+
+    let completed = 0;
+    containers.forEach(container => {
+        if (window.getComputedStyle(container).visibility == "hidden") {
+            isDoingAnimation = false;
+            document.isDoingAnimation = isDoingAnimation;
+            container.style.display = "none";
+            container.offsetHeight;
+            if (callback) callback();
+            return;
+        };
+        container.style.opacity = 0;
+        container.offsetHeight;
+        
+        function handleTransitionEnd() {
+            container.style.visibility = "hidden";
+            container.style.display = "none";
+            container.removeEventListener("transitionend", handleTransitionEnd);
+
+            completed++;
+            if (completed === containers.length) {
+                isDoingAnimation = false;
+                document.isDoingAnimation = isDoingAnimation;
+                if (callback) callback();
+            }
+        }
+
+        container.addEventListener("transitionend", handleTransitionEnd);
     });
+    if (containers.length === 0) isDoingAnimation = false;
 }
 
 function showContainers(id) {
-    document.querySelectorAll(`[id=${id}]`).forEach(container => {
-        if (container.style.display = "none") {
+    if (isDoingAnimation) return;
+    if (id == "inventoryContainer2") {
+        let container = document.getElementById("inventoryContainer");
+        container.style.display = "flex";
+        container.style.visibility = "visible";
+        container.offsetHeight;
+        requestAnimationFrame(() => {
+            container.style.opacity = 1; // Waits until the next frame to set the opacity to 1, otherwise it instantly appears. Js is so weird...
+        });
+        
+        function handleTransitionEnd() {
+            container.style.opacity = 1;
+            isDoingAnimation = false;
+            container.removeEventListener("transitionend", handleTransitionEnd);
+        }
+
+        container.addEventListener("transitionend", handleTransitionEnd);
+    };
+
+    let containers = document.querySelectorAll(`[id=${id}]`);
+    containers.forEach(container => {
+        if (window.getComputedStyle(container).visibility == "hidden") {
             container.style.display = "flex";
-            setTimeout(() => {
+            container.style.visibility = "visible";
+            requestAnimationFrame(() => {
                 container.style.opacity = 1;
-            }, 50);
-        };
+            });
+
+            function handleTransitionEnd() {
+                container.removeEventListener("transitionend", handleTransitionEnd);
+                container.style.opacity = 1;
+                isDoingAnimation = false;
+            }
+            container.addEventListener("transitionend", handleTransitionEnd);
+        } else {
+            isDoingAnimation = false;
+        }
     });
 }
 
 function showSettings() {
-    hideContainers("inventoryContainer", () => {
-        hideContainers("inventoryContainer2", () => {
-            showContainers("settingsContainer");
+    if (isDoingAnimation) {
+        setTimeout(() => isDoingAnimation = false, 500);
+        return;
+    };
+    let settings = document.getElementById("settingsContainer");
+    settings.offsetHeight;
+
+    if (window.getComputedStyle(settings).visibility == "hidden") {
+        hideContainers("relationshipContainer", () => {
+            hideContainers("inventoryContainer2", () => {
+                showContainers("settingsContainer");
+            });
         });
-    });
+    }
 }
 
 function showInventory() {
-    hideContainers("settingsContainer", () => {
-        showContainers("inventoryContainer");
-        showContainers("inventoryContainer2");
-    });
+    if (isDoingAnimation) {
+        setTimeout(() => isDoingAnimation = false, 500);
+        return;
+    };
+    let inventory = document.getElementById("inventoryContainer");
+    inventory.offsetHeight;
+
+    if (window.getComputedStyle(inventory).visibility == "hidden") {
+        hideContainers("relationshipContainer", () => {
+            hideContainers("settingsContainer", () => {
+                showContainers("inventoryContainer2");
+            });
+        });
+    }
 }
+
+function showRelationships() {
+    if (isDoingAnimation) {
+        setTimeout(() => isDoingAnimation = false, 500);
+        return;
+    };
+    let relationships = document.getElementById("relationshipContainer");
+    relationships.offsetHeight;
+    if (window.getComputedStyle(relationships).visibility == "hidden") {
+        hideContainers("inventoryContainer2", () => {
+            hideContainers("settingsContainer", () => {
+                showContainers("relationshipContainer");
+            });
+        });
+    };
+};
 
 window.showSettings = showSettings;
 window.showInventory = showInventory;
+window.showRelationships = showRelationships;
 
 function updateMaxHealth() {
     playerMaxHealth = 100 * realms[playerRealm];

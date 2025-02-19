@@ -22,5 +22,5 @@ function doEventStep(eventStep) {
 
 };
 
-// Using recursion instead of a while loop for the game events
+// Using recursion instead of a while loop for the game events.
 //requestAnimationFrame(gameLoop);
