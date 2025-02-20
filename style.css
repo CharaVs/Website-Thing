@@ -45,6 +45,17 @@ hr {
     user-select: none;
 }
 
+.h1Story {
+    font-family: "Poppins", sans-serif;
+    letter-spacing: 1px;
+    color: white;
+    border-radius: 15px;
+    height: 5px;
+    background-color: black;
+    padding-inline: 30px;
+    user-select: none;
+}
+
 .h1:hover {
     background-color: gray;
     transform: scale(1.05);

@@ -8,6 +8,7 @@
     </head>
     <body>
         <script type="module" src="init.js"></script>
+        <script type="module" src="events.js"></script>
         <div class="divBox">
             <div class="leftBox">
                 <div class="boxContainer">
@@ -42,42 +43,50 @@
                 <!-- Splitting the different containers up using comments, otherwise it'd be very very annoying to read. -->
 
                 <!-- BEGINNING OF SETTINGS CONTAINERS -->
-                <div class="boxContainer" id="settingsContainer" style="width: 74vw; visibility: hidden;">
+                <div class="boxContainer" id="settingsContainer" style="width: 74vw; visibility: hidden; display: none;">
                     <h1 class="h1">Save</h1>
                 </div>
-                <div class="boxContainer" id="settingsContainer" style="width: 74vw; visibility: hidden;">
+                <div class="boxContainer" id="settingsContainer" style="width: 74vw; visibility: hidden; display: none;">
                     <h1 class="h1">Load</h1>
                 </div>
-                <div class="boxContainer" id="settingsContainer" style="width: 74vw; visibility: hidden;">
+                <div class="boxContainer" id="settingsContainer" style="width: 74vw; visibility: hidden; display: none;">
                     <h1 class="h1Other">Volume - <input type="range" min="0" max="1" step="0.01" id="volume-slider" /></h1>
                 </div>
                 <!-- END OF SETTINGS CONTAINERS -->
 
                 <!-- BEGINNING OF INVENTORY CONTAINERS -->
-                <div class="boxContainer" id="inventoryContainer" style="width: 74vw; visibility: hidden; height: 40vh; border: 3px solid white; justify-content: left; flex-wrap: wrap; overflow-y: auto; margin-bottom: 6px;">
+                <div class="boxContainer" id="inventoryContainer" style="width: 74vw; visibility: hidden; display: none; height: 40vh; border: 3px solid white; justify-content: left; flex-wrap: wrap; overflow-y: auto; margin-bottom: 6px;">
                 </div>
 
-                <div class="boxContainer" id="inventoryContainer2" style="width: 74vw; height: 10vh; visibility: hidden;">
+                <div class="boxContainer" id="inventoryContainer2" style="width: 74vw; height: 10vh; visibility: hidden; display: none;">
                     <h1 class="h1Other" id="nameBox">Name</h1>
                 </div>
-                <div class="boxContainer" id="inventoryContainer2" style="width: 74vw; height: 10vh; visibility: hidden; justify-content: center; flex-flow: column wrap;">
+                <div class="boxContainer" id="inventoryContainer2" style="width: 74vw; height: 10vh; visibility: hidden; display: none; justify-content: center; flex-flow: column wrap;">
                     <h1 class="h1Other" id="descriptionBox">Description</h1>
                 </div>
-                <div class="boxContainer" id="inventoryContainer2" style="width: 74vw; height: 10vh; visibility: hidden; justify-content: center;">
+                <div class="boxContainer" id="inventoryContainer2" style="width: 74vw; height: 10vh; visibility: hidden; display: none; justify-content: center;">
                     <h1 class="h1Other" id="attackNumberBox" style="margin-inline: 6px;">Attack</h1>
                     <h1 class="h1Other" id="defenseNumberBox" style="margin-inline: 6px;">Defense</h1>
                     <h1 class="h1Other" id="absorbNumberBox" style="margin-inline: 6px;">Qi Absorption</h1>
                 </div>
-                <div class="boxContainer" id="inventoryContainer2" style="width: 74vw; visibility: hidden; height: 10vh;">
+                <div class="boxContainer" id="inventoryContainer2" style="width: 74vw; visibility: hidden; display: none; height: 10vh;">
                     <h1 class="h1" id="equipBox">Equip</h1>
                 </div>
                 <!-- END OF INVENTORY CONTAINERS -->
 
                 <!-- BEGINNING OF RELATIONSHIP CONTAINERS -->
-                <div class="boxContainer" id="relationshipContainer" style="width: 74vw; visibility: hidden; height: 40vh; border: 3px solid white; justify-content: left; flex-wrap: wrap; overflow-y: auto; margin-bottom: 6px;">
+                <div class="boxContainer" id="relationshipContainer" style="width: 74vw; visibility: hidden; display: none; height: 40vh; border: 3px solid white; justify-content: left; flex-wrap: wrap; overflow-y: auto; margin-bottom: 6px;">
                     <h1 class="h1Other" style="height: 10vh;"> -- Not Added Yet </h1>
                 </div>
                  <!-- END OF RELATIONSHIP CONTAINERS -->
+
+                 <!-- BEGINNING OF STORY CONTAINERS (finally)-->
+                 <div class="boxContainer" id="storyContainer" style="width: 74vw; height: 40vh; border: 3px solid white; justify-content: left; flex-wrap: wrap; overflow-y: auto; margin-bottom: 6px;">
+                </div>
+                <div class="boxContainer" id="storyContainer1" style="width: 74vw; height: 10vh;">
+                <h1 id="continueButton" class="h1" style="display: none;">Continue</h1>
+            </div>
+                  <!-- END OF STORY CONTAINERS -->
             </div>
         </div>
     </body>

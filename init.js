@@ -28,6 +28,8 @@ let playerEquippedWeapon = "none";
 let playerEquippedArmour = "none";
 let playerEquippedAccessory = "none";
 
+export var textInTextBox = [];
+
 document.getElementById("equipBox").addEventListener("click", function () {
     equipItem(document.getElementById("nameBox").textContent);
 });
@@ -51,19 +53,17 @@ function updateHealth(newHealthValue) {
     document.getElementById("healthContainer").innerHTML = `Health: ${playerHealth}`;
 };
 var isDoingAnimation = false;
-document.isDoingAnimation = isDoingAnimation;
 
 function hideContainers(id, callback) {
     if (isDoingAnimation) return;
 
     isDoingAnimation = true;
-    document.isDoingAnimation = isDoingAnimation;
+    
     let containers = document.querySelectorAll(`[id=${id}]`);
     if (id == "inventoryContainer2") {
         let container = document.getElementById("inventoryContainer");
         if (window.getComputedStyle(container).visibility == "hidden") {
             isDoingAnimation = false;
-            document.isDoingAnimation = isDoingAnimation;
             container.style.display = "none";
             container.offsetHeight;
             if (callback) callback();
@@ -75,6 +75,7 @@ function hideContainers(id, callback) {
         function handleTransitionEnd() {
             container.style.visibility = "hidden";
             container.style.display = "none";
+            container.style.opacity = 0;
             container.removeEventListener("transitionend", handleTransitionEnd);
             if (callback) callback();
         }
@@ -86,7 +87,6 @@ function hideContainers(id, callback) {
     containers.forEach(container => {
         if (window.getComputedStyle(container).visibility == "hidden") {
             isDoingAnimation = false;
-            document.isDoingAnimation = isDoingAnimation;
             container.style.display = "none";
             container.offsetHeight;
             if (callback) callback();
@@ -98,12 +98,12 @@ function hideContainers(id, callback) {
         function handleTransitionEnd() {
             container.style.visibility = "hidden";
             container.style.display = "none";
+            container.style.opacity = 0;
             container.removeEventListener("transitionend", handleTransitionEnd);
 
             completed++;
             if (completed === containers.length) {
                 isDoingAnimation = false;
-                document.isDoingAnimation = isDoingAnimation;
                 if (callback) callback();
             }
         }
@@ -125,7 +125,6 @@ function showContainers(id) {
         });
         
         function handleTransitionEnd() {
-            container.style.opacity = 1;
             isDoingAnimation = false;
             container.removeEventListener("transitionend", handleTransitionEnd);
         }
@@ -144,7 +143,6 @@ function showContainers(id) {
 
             function handleTransitionEnd() {
                 container.removeEventListener("transitionend", handleTransitionEnd);
-                container.style.opacity = 1;
                 isDoingAnimation = false;
             }
             container.addEventListener("transitionend", handleTransitionEnd);
@@ -177,7 +175,7 @@ function showInventory() {
         return;
     };
     let inventory = document.getElementById("inventoryContainer");
-    inventory.offsetHeight;
+    inventory.offsetHeight; // Force repaint, and it's on other lines too. Was here from when I tried to fix an earlier issue.
 
     if (window.getComputedStyle(inventory).visibility == "hidden") {
         hideContainers("relationshipContainer", () => {
@@ -250,6 +248,21 @@ function addItemToInventory(itemName) {
     document.getElementById("inventoryContainer").append(newItem);
 };
 window.addItemToInventory = addItemToInventory;
+
+export function addTextToStory(text) {
+    let storyContainer = document.getElementById("storyContainer");
+    let lastTextElement = storyContainer.querySelector(".h1Story");
+    
+    if (!lastTextElement) {
+        lastTextElement = document.createElement("h1");
+        lastTextElement.className = "h1Story";
+        storyContainer.appendChild(lastTextElement);
+    }
+    
+    lastTextElement.innerHTML += text + "<br>";
+}
+
+window.addTextToStory = addTextToStory;
 
 function clickOnItem(itemName) {
     let nameBox = document.getElementById("nameBox");
