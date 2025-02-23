@@ -1,3 +1,5 @@
+let prototypeEngine = false;
+
 function resizeCanvas(canvas) {
     const ctx = canvas.getContext("2d");
     const dpr = window.devicePixelRatio || 1;
@@ -11,6 +13,9 @@ function resizeCanvas(canvas) {
     ctx.fillStyle = "red";
     ctx.font = "30px Arial";
     ctx.fillText("Hello World",20,60);
+    if (prototypeEngine == true) {
+        ctx.fillText("Hi", 20, 60);
+    };
 };
 
 let canvasToResize = document.getElementById("gameCanvas")

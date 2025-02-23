@@ -10,11 +10,11 @@
         <script src="particles.js"></script>
         <div class="divBox">
             <div class="leftBox">
-                <div class="boxContainer">
+                <div class="boxContainer" id="selectButton">
                     <h1 id="status" class="h1Select">Select</h1>
                 </div>
                 <hr></hr>
-                <div class="boxContainer">
+                <div class="boxContainer" id="projects">
                     <h1 class="h1">Prototype Engine</h1>
                 </div>
             </div>
